@@ -31,13 +31,13 @@ Data Source: Salesforce Bulk API 2.0
 
 Deployment: Render
 
-📁 Project Structure
-sf-recruiter-ai/
-├── api/                   # FastAPI Backend & LLM Reasoning
-├── ingestion/             # Salesforce Sync & PDF Processing
-├── database/              # Supabase Client & SQL Schema
-├── frontend/              # Streamlit User Interface
-└── .env                   # Configuration (Local only)
+```-📁 Project Structure
+-sf-recruiter-ai/
+-├── api/                   # FastAPI Backend & LLM Reasoning
+-├── ingestion/             # Salesforce Sync & PDF Processing
+-├── database/              # Supabase Client & SQL Schema
+-├── frontend/              # Streamlit User Interface
+-└── .env                   # Configuration (Local only) ```
 
 
 ⚙️ Setup & Installation
@@ -48,16 +48,16 @@ Execute the database/schema.sql in your Supabase SQL editor to enable pgvector a
 Create a .env file in the root directory:
 
 # Salesforce
-SF_USERNAME=...
-SF_PASSWORD=...
-SF_SECURITY_TOKEN=...
-SF_CLIENT_ID=...
-SF_CLIENT_SECRET=...
+-SF_USERNAME=...
+-SF_PASSWORD=...
+-SF_SECURITY_TOKEN=...
+-SF_CLIENT_ID=...
+-SF_CLIENT_SECRET=...
 
 # AI & DB
-OPENAI_API_KEY=...
-SUPABASE_URL=...
-SUPABASE_SERVICE_ROLE_KEY=...
+-OPENAI_API_KEY=...
+-SUPABASE_URL=...
+-SUPABASE_SERVICE_ROLE_KEY=...
 
 
 3. Running the Sync
@@ -73,8 +73,8 @@ streamlit run frontend/app.py```
 
 
 System Design Choices
-Why Supabase? It allows for a hybrid approach: storing relational metadata (like tenure) alongside vector embeddings, enabling "Hard Filtering" via SQL before performing "Soft Matching" via AI.
+-Why Supabase? It allows for a hybrid approach: storing relational metadata (like tenure) alongside vector embeddings, enabling "Hard Filtering" via SQL before performing "Soft Matching" via AI.
 
-Cost Efficiency: Resumes are truncated before being sent to the LLM, and the Embedder uses batching to reduce network overhead and token waste during the initial backfill of 100k+ records.
+-Cost Efficiency: Resumes are truncated before being sent to the LLM, and the Embedder uses batching to reduce network overhead and token waste during the initial backfill of 100k+ records.
 
-Idempotency: The system uses the Salesforce Id as a unique constraint. Re-running the sync will never create duplicate entries; it only updates records that have changed.
+-Idempotency: The system uses the Salesforce Id as a unique constraint. Re-running the sync will never create duplicate entries; it only updates records that have changed.
